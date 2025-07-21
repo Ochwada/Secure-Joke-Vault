@@ -34,11 +34,13 @@ secure-joke-vault/
 ├── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   └── com/yourname/jokevault/
+│   │   │   └── com/ochwada/jokevault/
 │   │   │       ├── config/                  # Security config, JWT filters, CORS, etc.
 │   │   │       ├── controller/              # REST endpoints (e.g. /jokes, /auth)
 │   │   │       ├── dto/                     # Data Transfer Objects for API input/output
 │   │   │       ├── model/                   # MongoDB document models (e.g. Joke, User)
+│   │   │       │   ├── User.java
+│   │   │       │   └── Role # enum
 │   │   │       ├── repository/              # MongoDB repositories
 │   │   │       ├── security/                # JWT utility classes and user details service
 │   │   │       ├── service/                 # Business logic layer
@@ -51,7 +53,7 @@ secure-joke-vault/
 │
 │   └── test/
 │       └── java/
-│           └── com/yourname/jokevault/
+│           └── com/ochwada/jokevault/
 │               └── SecureJokeVaultApplicationTests.java  # Unit and integration tests
 
 ```
@@ -69,12 +71,12 @@ secure-joke-vault/
 
 ## 📬 API Endpoints (Sample)
 
-| Method | Endpoint         | Description                   |
-|--------|------------------|-------------------------------|
-| POST   | /api/auth/signup | Register a new user           |
-| POST   | /api/auth/login  | Login and get JWT token       |
-| GET    | /api/jokes       | Get all jokes (auth required) |
-| POST   | /api/jokes       | Submit a joke (auth required) |
+| Method | Endpoint           | Description                   |
+|--------|--------------------|-------------------------------|
+| POST   | `/api/auth/signup` | Register a new user           |
+| POST   | `/api/auth/login`  | Login and get JWT token       |
+| GET    | `/api/jokes`       | Get all jokes (auth required) |
+| POST   | `/api/jokes `      | Submit a joke (auth required) |
 
 
 
