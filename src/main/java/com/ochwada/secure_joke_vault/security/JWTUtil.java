@@ -1,7 +1,7 @@
 package com.ochwada.secure_joke_vault.security;
 
 
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
@@ -94,10 +94,10 @@ public class JWTUtil {
      * @throws io.jsonwebtoken.JwtException if the token is invalid or expired
      */
     public String extractUsername(String token) {
-        return Jwts.parser() // entry point to create a token parser
+        return Jwts.parserBuilder() // entry point to create a token parser
                 .setSigningKey(getSigningKey()) // use the jwt secret to unlock the token
                 .build() // finalizing the parser configuration
-                .parseClaimsJwt(token) // Parses the token and validate its signature and expiration
+                .parseClaimsJws(token) // Parses the token and validate its signature and expiration
                 .getBody() // get the Payload
                 .getSubject();  // get the 'sub' claim (username)
     }
@@ -114,11 +114,12 @@ public class JWTUtil {
      * @throws io.jsonwebtoken.JwtException if the token is invalid or cannot be parsed
      */
     public boolean isTokenExpired(String token) {
-        Date expiration = Jwts.parser()
+        Date expiration = Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token)
-                .getBody().getExpiration();
+                .getBody()
+                .getExpiration();  // get the 'Expiration' claim (Expiration)
 
         return expiration.before(new Date());
     }
