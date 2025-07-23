@@ -1,4 +1,4 @@
-package com.ochwada.secure_joke_vault.controller;
+package com.ochwada.secure_joke_vault.config;
 
 
 import org.springframework.context.annotation.Bean;
@@ -30,3 +30,5 @@ public class RestTemplateConfig {
         return new RestTemplate();
     }
 }
+
+
