@@ -19,7 +19,7 @@ public class SecureJokeVaultApplication {
 
 		// List of environment variables
 		String[] envVars = {
-				"MONGODB_URL",
+				"MONGODB_URI",
 				"MONGODB_DATABASE",
 				"PORT",
 				"JWT_SECRET",

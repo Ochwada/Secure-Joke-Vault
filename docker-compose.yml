@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  SecureJokeVault:
+    build: .
+    ports:
+      - "${PORT:-9090}:9090"
+    env_file:
+      - .env
