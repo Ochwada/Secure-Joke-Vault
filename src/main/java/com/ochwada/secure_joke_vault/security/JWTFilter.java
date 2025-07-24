@@ -85,13 +85,13 @@ public class JWTFilter extends OncePerRequestFilter {
                 // Validate the token against the loaded user details
                 if (jwtUtil.isTokenValid(token, userDetails.getUsername())) {
 
-                    // Create an authentication (object ) token with user details and authorities
+                    // Create an authentication (object ) with user details and authorities
                     var authToken = new UsernamePasswordAuthenticationToken(
                             userDetails,
                             null,
                             userDetails.getAuthorities()
                     );
-                    // Attach request-specific details (e.g., remote IP, session ID) to the authentication token
+                    // Attach (inject) request-specific details (e.g., remote IP, session ID) to the authentication token
                     authToken.setDetails(
                             new WebAuthenticationDetailsSource().buildDetails(request)
                     );
