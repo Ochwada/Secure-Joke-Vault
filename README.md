@@ -1,7 +1,12 @@
 # 🤣🔐 Secure Joke Vault
 
-Secure Joke Vault is a Spring Boot web application that allows users to store, manage, and access their favorite 
-jokes—safely and securely. It integrates user authentication, validation, and MongoDB for persistent storage.
+A Spring Boot REST API for secure joke sharing with JWT-based authentication and MongoDB for persistent storage.
+
+This app allows users to register, sign in securely, and fetch random jokes that are saved under their profile. 
+It follows a layered architecture with strong separation of concerns (DTOs, Services, Controllers, Repositories) and 
+supports easy deployment using Docker.
+
+
 
 
 ## Features
@@ -12,6 +17,15 @@ jokes—safely and securely. It integrates user authentication, validation, and 
 - MongoDB Integration (Spring Data MongoDB)
 - Developer Experience (Spring Boot DevTools, Lombok)
 - Configuration Metadata Support (Spring Configuration Processor)
+
+### App Features
+- JWT Authentication (Signup & Signin)
+- Fetch and save jokes per authenticated user 
+- Clean architecture with DTOs and Mappers 
+- MongoDB for document storage 
+- Password encryption using BCrypt 
+- Ready for integration and unit testing 
+- Docker & Docker Compose support
 
 
 ## Dependencies
@@ -114,6 +128,12 @@ secure-joke-vault/
 ```bash 
 git clone https://github.com/yourname/secure-joke-vault.git
 cd secure-joke-vault
+
+# Add environment config
+cp .env.example .env
+
+# Build and run (requires Docker)
+docker-compose up --build
 ```
 
 2. Configure MongoDB & JWT
