@@ -27,33 +27,47 @@ jokes—safely and securely. It integrates user authentication, validation, and 
 ## 📁 Project Structure
 ```yaml
 secure-joke-vault/
-├── .gitignore                     # Specifies intentionally untracked files to ignore
-├── pom.xml                        # Maven config file with dependencies and plugins
-├── README.md                      # Project overview, setup, and usage instructions
+├── .gitignore                       # Specifies intentionally untracked files to ignore
+├── .env                             # Environment variables for JWT, DB, etc.
+├── pom.xml                          # Maven build configuration
+├── README.md                        # Project overview and instructions
 
 ├── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   └── com/ochwada/jokevault/
-│   │   │       ├── config/                  # Security config, JWT filters, CORS, etc.
-│   │   │       ├── controller/              # REST endpoints (e.g. /jokes, /auth)
-│   │   │       ├── dto/                     # Data Transfer Objects for API input/output
-│   │   │       ├── model/                   # MongoDB document models (e.g. Joke, User)
-│   │   │       │   ├── User.java
-│   │   │       │   └── Role # enum
-│   │   │       ├── repository/              # MongoDB repositories
-│   │   │       ├── security/                # JWT utility classes and user details service
-│   │   │       ├── service/                 # Business logic layer
-│   │   │       └── SecureJokeVaultApplication.java  # Main Spring Boot app class
+│   │   │   └── com/ochwada/secure_joke_vault/
+│   │   │       ├── alias/                  # Custom UserDetails implementation
+│   │   │       │   └── SecurityUser.java
+│   │   │       ├── config/                 # Configuration classes (e.g., RestTemplate)
+│   │   │       │   └── RestTemplateConfig.java
+│   │   │       ├── controller/             # REST API endpoints
+│   │   │       │   └── [Controllers go here]
+│   │   │       ├── model/                  # Data models (Joke, Role, User)
+│   │   │       │   ├── Joke.java
+│   │   │       │   ├── Role.java
+│   │   │       │   └── User.java
+│   │   │       ├── repository/             # Repositories for data access
+│   │   │       │   ├── JokeRepository.java
+│   │   │       │   └── UserRepository.java
+│   │   │       ├── security/               # JWTFilter, JWTUtil, and security config
+│   │   │       │   ├── JWTFilter.java
+│   │   │       │   └── JWTUtil.java
+│   │   │       ├── service/                # Business logic and services
+│   │   │       │   ├── JokeService.java
+│   │   │       │   └── UserDetailsServiceImpl.java
+│   │   │       └── SecureJokeVaultApplication.java  # Main Spring Boot application
 │   │
 │   │   └── resources/
-│   │       ├── application.properties       # App configuration (port, DB URI, JWT secret)
-│   │       ├── static/                      # Static assets (if needed)
+│   │       ├── application.properties       # Spring Boot application settings
+│   │       ├── static/                      # Static web resources (if any)
 │   │       └── templates/                   # Thymeleaf templates (if used)
 │
 │   └── test/
 │       └── java/
-│           └── com/ochwada/jokevault/
+│           └── com/ochwada/secure_joke_vault/
+│               └── [Test classes go here]
+
+├── target/                          # Compiled output and build artifacts (ignored in VCS)
 │               └── SecureJokeVaultApplicationTests.java  # Unit and integration tests
 
 ```
