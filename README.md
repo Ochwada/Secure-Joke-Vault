@@ -26,49 +26,63 @@ jokes—safely and securely. It integrates user authentication, validation, and 
 
 ## 📁 Project Structure
 ```yaml
+
 secure-joke-vault/
+├── .env                             # Environment variables (JWT secret, MongoDB URI, etc.)
 ├── .gitignore                       # Specifies intentionally untracked files to ignore
-├── .env                             # Environment variables for JWT, DB, etc.
-├── pom.xml                          # Maven build configuration
-├── README.md                        # Project overview and instructions
+├── .gitattributes                   # Git configuration for language diff settings
+├── Dockerfile                       # Docker build instructions for the app
+├── docker-compose.yml              # Docker Compose setup (e.g., app + MongoDB)
+├── mvnw, mvnw.cmd                   # Maven Wrapper scripts for platform-independent builds
+├── pom.xml                          # Maven build configuration and dependencies
+├── README.md                        # Project overview, usage, and setup instructions
 
 ├── src/
 │   ├── main/
 │   │   ├── java/
 │   │   │   └── com/ochwada/secure_joke_vault/
-│   │   │       ├── alias/                  # Custom UserDetails implementation
+│   │   │       ├── alias/                     # Custom UserDetails wrapper
 │   │   │       │   └── SecurityUser.java
-│   │   │       ├── config/                 # Configuration classes (e.g., RestTemplate)
-│   │   │       │   └── RestTemplateConfig.java
-│   │   │       ├── controller/             # REST API endpoints
-│   │   │       │   └── [Controllers go here]
-│   │   │       ├── model/                  # Data models (Joke, Role, User)
+│   │   │       ├── config/                    # Security and application configuration
+│   │   │       │   ├── RestTemplateConfig.java
+│   │   │       │   └── SecurityConfig.java
+│   │   │       ├── controller/                # REST API endpoints
+│   │   │       │   ├── AuthController.java
+│   │   │       │   └── JokeController.java
+│   │   │       ├── dto/                       # Data Transfer Objects
+│   │   │       │   ├── JWTResponse.java
+│   │   │       │   ├── SigninRequest.java
+│   │   │       │   └── SignupRequest.java
+│   │   │       ├── mapper/                    # Object mappers (e.g. DTO → Entity)
+│   │   │       │   └── UserMapper.java
+│   │   │       ├── model/                     # Domain models / MongoDB documents
 │   │   │       │   ├── Joke.java
 │   │   │       │   ├── Role.java
 │   │   │       │   └── User.java
-│   │   │       ├── repository/             # Repositories for data access
+│   │   │       ├── repository/                # Spring Data MongoDB repositories
 │   │   │       │   ├── JokeRepository.java
 │   │   │       │   └── UserRepository.java
-│   │   │       ├── security/               # JWTFilter, JWTUtil, and security config
+│   │   │       ├── security/                  # JWT filters, utils
 │   │   │       │   ├── JWTFilter.java
 │   │   │       │   └── JWTUtil.java
-│   │   │       ├── service/                # Business logic and services
+│   │   │       ├── service/                   # Business logic layer
 │   │   │       │   ├── JokeService.java
 │   │   │       │   └── UserDetailsServiceImpl.java
-│   │   │       └── SecureJokeVaultApplication.java  # Main Spring Boot application
+│   │   │       └── SecureJokeVaultApplication.java  # Main Spring Boot application class
 │   │
 │   │   └── resources/
-│   │       ├── application.properties       # Spring Boot application settings
-│   │       ├── static/                      # Static web resources (if any)
-│   │       └── templates/                   # Thymeleaf templates (if used)
+│   │       ├── application.properties         # Spring Boot app configuration
+│   │       ├── static/                        # Static files (optional)
+│   │       └── templates/                     # HTML templates (optional)
+
 │
 │   └── test/
 │       └── java/
 │           └── com/ochwada/secure_joke_vault/
-│               └── [Test classes go here]
+│               └── SecureJokeVaultApplicationTests.java  # Unit & integration tests
 
-├── target/                          # Compiled output and build artifacts (ignored in VCS)
-│               └── SecureJokeVaultApplicationTests.java  # Unit and integration tests
+├── target/                          # Compiled build output (ignored by Git)
+
 
 ```
 
