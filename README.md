@@ -89,8 +89,8 @@ secure-joke-vault/
 |--------|--------------------|-------------------------------|
 | POST   | `/api/auth/signup` | Register a new user           |
 | POST   | `/api/auth/login`  | Login and get JWT token       |
-| GET    | `/api/jokes`       | Get all jokes (auth required) |
-| POST   | `/api/jokes `      | Submit a joke (auth required) |
+| GET    | `/api/joke`        | Get all jokes (auth required) |
+| POST   | `/api/joke `       | Submit a joke (auth required) |
 
 
 
