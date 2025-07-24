@@ -63,7 +63,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // Create custom SecurityUser
         UserDetails userDetails = new SecurityUser(
-                user.getUserName(),
+                user.getUsername(),
                 user.getPassword(),
                 authorities
         );

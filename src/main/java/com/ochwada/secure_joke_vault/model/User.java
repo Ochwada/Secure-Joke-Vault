@@ -46,7 +46,7 @@ public class User {
      */
     @Indexed(unique = true)
     @NotBlank(message = "Username is required")
-    private String userName;
+    private String username;
 
     /**
      * The user's password.
