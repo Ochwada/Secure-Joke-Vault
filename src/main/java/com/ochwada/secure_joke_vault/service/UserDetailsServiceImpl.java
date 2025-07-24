@@ -19,17 +19,31 @@ import java.util.List;
  * File: UserDetailsServiceImpl.java
  * Author: Ochwada
  * Date: Wednesday, 23.Jul.2025, 10:58 AM
- * Description:
+ * Description: Provides user details to Spring Security
  * Objective:
  * *******************************************************
  */
 
+/**
+ * Service class that implements Spring Security's {@link UserDetailsService} to provide user authentication functionality
+ * based on application-specific user data.
+ * This implementation fetches user data from a {@link UserRepository} and maps the user's roles
+ * to {@link SimpleGrantedAuthority} objects, which are used by Spring Security for authorization.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    /** Repository for accessing user data. */
     private final UserRepository repository;
 
+    /**
+     * Loads a user by their username and converts their roles into Spring Security authorities.
+     *
+     * @param username the username identifying the user whose data is required
+     * @return a {@link UserDetails} object containing the user's authentication and authorization information
+     * @throws UsernameNotFoundException if no user with the given username is found
+     */
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
@@ -49,26 +63,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // Create custom SecurityUser
         UserDetails userDetails = new SecurityUser(
-                user.getName(),
+                user.getUserName(),
                 user.getPassword(),
                 authorities
         );
 
         return userDetails;
     }
-
-        /** // Fetch user from DB
-        User user = repository
-                .findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
-        UserDetails userDetails = new SecurityUser(
-                user.getName();
-                user.getPassword();
-                user.getRoles().stream()
-                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
-                        .toList();
-        )
-        return userDetails;
-         */
 }
