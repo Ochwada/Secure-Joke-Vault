@@ -56,8 +56,8 @@ public class JokeService {
         // Map to a Joke Object
         Joke joke = new Joke();
         joke.setType(jsonNode.get("type").asText());
-        joke.setType(jsonNode.get("setup").asText());
-        joke.setType(jsonNode.get("punchline").asText());
+        joke.setSetup(jsonNode.get("setup").asText());
+        joke.setPunchline(jsonNode.get("punchline").asText());
         joke.setCreatedBy(username);
 
         // Save to database
